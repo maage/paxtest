@@ -27,4 +27,4 @@ docs:
 
 clean:
 	cd src && $(MAKE) -f Makefile.psm clean
-	cd doc && $(MAKE) clean clean
+	cd doc && $(MAKE) clean
