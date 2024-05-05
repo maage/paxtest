@@ -4,6 +4,7 @@
 MAKEFLAGS += --no-print-directory
 
 CC ?= gcc
+INSTALL ?= install
 
 check_gcc = $(shell if $(CC) $(1) -S -o /dev/null -xc /dev/null > /dev/null 2>&1; \
 	then echo "$(1)"; else echo "$(2)"; fi)
@@ -109,12 +110,9 @@ clean:
 ifdef DESTDIR
 ifdef BINDIR
 ifdef RUNDIR
-install: all
-	mkdir -p $(DESTDIR)/$(RUNDIR)
-	cp $(SHLIBS) $(TESTS) $(UTILS) $(DESTDIR)/$(RUNDIR)
-	mkdir -p $(DESTDIR)/$(BINDIR)
-	cp paxtest $(DESTDIR)/$(BINDIR)
-	chmod 755 $(DESTDIR)/$(BINDIR)/paxtest
+install: paxtest $(SHLIBS) $(TESTS) $(UTILS)
+	$(INSTALL) -Dpm 0755 -t $(DESTDIR)/$(BINDIR) paxtest
+	$(INSTALL) -Dpm 0755 -t $(DESTDIR)/$(RUNDIR) $(SHLIBS) $(TESTS) $(UTILS)
 endif
 endif
 endif
