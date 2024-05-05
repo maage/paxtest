@@ -25,7 +25,6 @@ int main( int argc, char *argv[] )
 	unsigned long results[COUNT];
 	unsigned int quality[8 * sizeof(unsigned long)] = { 0 };
 	unsigned int weak_bits = 0;
-	unsigned int dupes = 0;
 	unsigned long tmp;
 	unsigned long and;
 	unsigned long or;
